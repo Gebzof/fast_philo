@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpichon <gpichon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gebz <gebz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 11:13:19 by gpichon           #+#    #+#             */
-/*   Updated: 2025/04/22 17:30:14 by gpichon          ###   ########.fr       */
+/*   Updated: 2025/04/23 01:17:05 by gebz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,14 @@ void	smart_sleep(t_philo *philo, long duration)
 		if (elapsed >= duration)
 			break ;
 		remaining = duration - elapsed;
-		if (remaining > 300)
+		if (remaining >= 500)
+			usleep(500);
+		if (remaining >= 300)
 			usleep(300);
-		else if (remaining > 100)
+		else if (remaining >= 100)
 			usleep(100);
 		else
-			usleep(10);
+			usleep(remaining);
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpichon <gpichon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gebz <gebz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 11:13:19 by gpichon           #+#    #+#             */
-/*   Updated: 2025/04/22 18:00:02 by gpichon          ###   ########.fr       */
+/*   Updated: 2025/04/23 01:23:37 by gebz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	philo_eat(t_philo *philo)
 	if (!take_forks(philo))
 		return (0);
 	pthread_mutex_lock(&philo->data->print_mutex);
+	if (check_death_status(philo))
+		return (pthread_mutex_unlock(&philo->data->print_mutex), 0);
 	print_status(philo, "is eating");
 	pthread_mutex_unlock(&philo->data->print_mutex);
 	if (!update_meal_status(philo))
@@ -75,6 +77,6 @@ void	philo_think(t_philo *philo)
 	if (check_death_status(philo))
 		return (pthread_mutex_unlock(&philo->data->print_mutex), (void)0);
 	print_status(philo, "is thinking");
-	usleep(200);
+	usleep(50);
 	pthread_mutex_unlock(&philo->data->print_mutex);
 }

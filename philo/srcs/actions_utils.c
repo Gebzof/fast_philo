@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpichon <gpichon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gebz <gebz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 20:30:00 by gebz              #+#    #+#             */
-/*   Updated: 2025/04/22 17:52:22 by gpichon          ###   ########.fr       */
+/*   Updated: 2025/04/23 01:25:49 by gebz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,7 @@ int	take_forks(t_philo *philo)
 		pthread_mutex_unlock(&philo->data->forks[philo->left_fork]);
 		return (0);
 	}
+	else
+		usleep(50);
 	return (1);
 }
