@@ -6,7 +6,7 @@
 /*   By: gebz <gebz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 11:13:19 by gpichon           #+#    #+#             */
-/*   Updated: 2025/04/23 01:51:57 by gebz             ###   ########.fr       */
+/*   Updated: 2025/04/23 02:00:17 by gebz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	philo_eat(t_philo *philo)
 		return (0);
 	pthread_mutex_lock(&philo->data->print_mutex);
 	if (check_death_status(philo))
-		return (pthread_mutex_unlock(&philo->data->print_mutex), 0);
+		return (release_forks(philo),
+			pthread_mutex_unlock(&philo->data->print_mutex), 0);
 	print_status(philo, "is eating");
 	pthread_mutex_unlock(&philo->data->print_mutex);
 	if (!update_meal_status(philo))
